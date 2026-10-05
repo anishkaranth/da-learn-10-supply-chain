@@ -1,0 +1,5 @@
+entity,column_name,raw_missing_pct,clean_null_pct,treatment
+stg_dataco,customer_lname,0.004,,"customer names, e-mail, password, street dropped (PII / masked)"
+stg_dataco,customer_zipcode,0.002,0.0,recovered from the shifted customer_state value
+stg_dataco,order_zipcode,86.24,86.24,"only US destinations carry one; kept as NULL, not used in KPIs"
+stg_dataco,product_description,100.0,,always empty -> column dropped

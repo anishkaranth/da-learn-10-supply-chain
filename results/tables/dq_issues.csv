@@ -1,0 +1,16 @@
+check_name,affected_rows
+"constant or empty columns dropped (product_status = 0, product_description empty)",2
+customer address shifted one column (state held a zip code) - repaired,3
+customer_country 'EE. UU.' standardised to United States,111146
+department_name with trailing space trimmed,362
+"masked / PII columns dropped (email, password = XXXXXXXXX; names, street)",5
+"order lines where profit <> net_sales * rounded profit_ratio (> 0.05, ratio is 2 dp)",64495
+order lines with negative profit (kept),33784
+"order lines with profit outside Q1/Q3 -/+ 3*IQR (flagged, kept)",7964
+order_country in Spanish translated to English (data/reference),124846
+order_lines: duplicate order_item_id rows dropped,0
+order_region with double / trailing spaces normalised,17925
+"orders CANCELED or SUSPECTED_FRAUD (excluded from money KPIs, kept)",2855
+"orders from Oct 2017 on (1 line per order, few products: flagged regime change)",8403
+"orders with Shipping canceled (excluded from delivery KPIs, kept)",2855
+redundant duplicate columns dropped (identity asserted below),6

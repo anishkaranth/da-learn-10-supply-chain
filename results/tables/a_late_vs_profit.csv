@@ -1,0 +1,4 @@
+delivery_outcome,lines,net_sales,margin_pct,loss_line_pct
+early,41592,7656338.75,12.22,18.69
+late,98977,18082555.3,11.83,18.74
+on time,32196,5905771.03,12.38,18.54

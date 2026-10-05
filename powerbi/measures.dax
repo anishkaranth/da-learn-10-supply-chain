@@ -1,0 +1,30 @@
+-- da-learn-10 Supply chain (DataCo) - DAX measures
+-- Home table: fact_order (order grain) unless the measure names fact_order_item (line grain).
+-- Booked = order_status not CANCELED / SUSPECTED_FRAUD (is_booked = 1). Shipped = delivery_status <> "Shipping canceled".
+Orders = COUNTROWS ( fact_order )
+Order Lines = COUNTROWS ( fact_order_item )
+Customers = DISTINCTCOUNT ( fact_order[customer_id] )
+Booked Orders = CALCULATE ( [Orders], fact_order[is_booked] = 1 )
+Booked Net Sales = CALCULATE ( SUM ( fact_order[net_sales] ), fact_order[is_booked] = 1 )
+Booked Profit = CALCULATE ( SUM ( fact_order[profit] ), fact_order[is_booked] = 1 )
+Profit Margin % = DIVIDE ( [Booked Profit], [Booked Net Sales] )
+Avg Order Value = DIVIDE ( [Booked Net Sales], [Booked Orders] )
+Discount % = DIVIDE ( CALCULATE ( SUM ( fact_order[discount_amount] ), fact_order[is_booked] = 1 ),
+                      CALCULATE ( SUM ( fact_order[gross_sales] ), fact_order[is_booked] = 1 ) )
+Shipped Orders = CALCULATE ( [Orders], fact_order[is_shipped] = 1 )
+Late Orders = CALCULATE ( [Orders], fact_order[is_shipped] = 1, fact_order[late_flag] = 1 )
+Late Rate % = DIVIDE ( [Late Orders], [Shipped Orders] )
+On-time Rate % = DIVIDE ( CALCULATE ( [Orders], fact_order[delivery_outcome] = "on time" ), [Shipped Orders] )
+Early Rate % = DIVIDE ( CALCULATE ( [Orders], fact_order[delivery_outcome] = "early" ), [Shipped Orders] )
+Avg Actual Days = CALCULATE ( AVERAGE ( fact_order[days_real] ), fact_order[is_shipped] = 1 )
+Avg Promised Days = CALCULATE ( AVERAGE ( fact_order[days_scheduled] ), fact_order[is_shipped] = 1 )
+Avg Delay When Late = CALCULATE ( AVERAGE ( fact_order[delay_days] ), fact_order[is_shipped] = 1, fact_order[late_flag] = 1 )
+Suspected Fraud % = DIVIDE ( CALCULATE ( [Orders], fact_order[is_suspected_fraud] = 1 ), [Orders] )
+Loss Order % = DIVIDE ( CALCULATE ( [Orders], fact_order[is_loss_order] = 1, fact_order[is_booked] = 1 ), [Booked Orders] )
+-- line grain (fact_order_item): use these with dim_product / discount_band
+Line Net Sales = CALCULATE ( SUM ( fact_order_item[net_sales] ), fact_order_item[is_booked] = 1 )
+Line Profit = CALCULATE ( SUM ( fact_order_item[profit] ), fact_order_item[is_booked] = 1 )
+Line Margin % = DIVIDE ( [Line Profit], [Line Net Sales] )
+Loss Line % = DIVIDE ( CALCULATE ( COUNTROWS ( fact_order_item ), fact_order_item[is_booked] = 1, fact_order_item[is_loss] = 1 ),
+                       CALCULATE ( COUNTROWS ( fact_order_item ), fact_order_item[is_booked] = 1 ) )
+Sales Share % = DIVIDE ( [Line Net Sales], CALCULATE ( [Line Net Sales], ALL ( dim_product ) ) )

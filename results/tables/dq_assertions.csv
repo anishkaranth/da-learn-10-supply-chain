@@ -1,0 +1,23 @@
+check_name,failed_rows,status
+customer attributes identical on every line of a customer,0,PASS
+every order / shipping timestamp parsed,0,PASS
+every order country mapped to English,0,PASS
+fact_order order_date / ship_date -> dim_date,0,PASS
+fact_order rows = distinct raw order_id,0,PASS
+fact_order.customer_id -> dim_customer,0,PASS
+fact_order.geo_key -> dim_geography,0,PASS
+fact_order_item rows = raw rows (no line lost),0,PASS
+fact_order_item.order_id -> fact_order,0,PASS
+fact_order_item.order_item_id unique,0,PASS
+fact_order_item.product_id -> dim_product,0,PASS
+gross_sales = unit_price * quantity,0,PASS
+line net_sales reconcile to fact_order (abs diff < 1),0,PASS
+net_sales = gross_sales - discount_amount,0,PASS
+one payment_type per order status,0,PASS
+one promised_days per shipping mode,0,PASS
+order-level attributes identical on every line of an order,0,PASS
+product attributes identical on every line of a product,0,PASS
+quantity 1-5 and discount_rate 0-0.25,0,PASS
+"redundant columns identical (benefit/profit, sales per customer/total, ids, prices)",0,PASS
+ship_date - order_date = days_real,0,PASS
+source Late_delivery_risk = derived late_flag (shipped lines),0,PASS

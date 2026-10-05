@@ -1,0 +1,4 @@
+customer_segment,orders,customers,booked_net_sales,margin_pct,avg_order_value,late_pct
+Consumer,34119,10695,16417549.44,12.08,503.39,57.25
+Corporate,19856,6239,9621051.58,12.03,505.92,57.16
+Home Office,11777,3718,5606063.73,11.88,497.61,57.74

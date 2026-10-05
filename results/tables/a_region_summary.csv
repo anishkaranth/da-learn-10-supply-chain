@@ -1,0 +1,24 @@
+market,order_region,orders,booked_net_sales,margin_pct,late_pct,suspected_fraud_pct
+Africa,Central Africa,556,282261.69,11.49,60.04,1.98
+Africa,East Africa,613,326530.04,12.83,59.08,1.79
+Africa,North Africa,1064,547332.81,10.84,57.06,2.44
+Africa,Southern Africa,398,194755.68,15.01,56.32,2.51
+Africa,West Africa,1223,631299.63,12.22,53.32,2.29
+Europe,Eastern Europe,1292,672090.94,11.44,58.03,1.78
+Europe,Northern Europe,3716,1864435.57,12.14,56.0,1.88
+Europe,Southern Europe,3543,1755487.56,12.61,55.9,2.34
+Europe,Western Europe,10010,5056355.16,12.01,58.4,2.5
+LATAM,Caribbean,2806,1416575.98,11.79,55.59,2.42
+LATAM,Central America,9396,4884996.0,12.01,57.28,2.25
+LATAM,South America,4979,2528275.09,12.48,56.9,2.39
+Pacific Asia,Central Asia,184,95558.48,13.16,56.67,1.09
+Pacific Asia,Eastern Asia,3318,1282401.19,11.05,57.33,2.26
+Pacific Asia,Oceania,4362,1736607.76,11.25,57.05,2.29
+Pacific Asia,South Asia,3335,1347836.98,11.78,57.94,1.77
+Pacific Asia,Southeast Asia,4356,1665459.9,12.14,58.02,1.93
+Pacific Asia,West Asia,2022,1009425.9,11.44,58.5,2.42
+USCA,Canada,309,159215.51,14.15,52.58,3.56
+USCA,East of USA,2323,1179786.02,12.61,57.5,2.15
+USCA,South of USA,1345,673490.43,12.23,58.83,2.08
+USCA,US Center,1935,995156.92,12.7,57.83,2.17
+USCA,West of USA,2667,1339329.51,11.89,57.22,2.92

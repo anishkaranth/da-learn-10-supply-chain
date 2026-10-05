@@ -1,0 +1,172 @@
+{
+ "snapshot": "headline KPIs + run config",
+ "project": "da-learn-10-supply-chain",
+ "source_mode": "full",
+ "engine": "duckdb 1.5.6",
+ "config": {
+  "sql_dialect": "Spark SQL style (+ DuckDB shims in sql/00), run on DuckDB",
+  "grain": "fact_order_item = one row per order line; fact_order = one row per order",
+  "booked_rule": "money KPIs exclude order_status CANCELED and SUSPECTED_FRAUD",
+  "late_rule": "late = Days for shipping (real) > Days for shipment (scheduled); delivery KPIs exclude 'Shipping canceled'",
+  "net_sales": "Order Item Total (Sales - Order Item Discount)",
+  "outlier_rule": "line profit outside Q1/Q3 -/+ 3*IQR (flagged, kept)",
+  "regime_flag": "orders from 2017-10-01 flagged is_late_2017_regime (1 line per order, few products)",
+  "sample_rule": "order_id % 200 = 7 plus every order containing an address-shifted row (data/raw)"
+ },
+ "headline": {
+  "order_lines_total": 180519,
+  "orders_total": 65752,
+  "customers_total": 20652,
+  "products_total": 118,
+  "categories_total": 50,
+  "countries_total": 164,
+  "markets_total": 5,
+  "first_order_date": "2015-01-01",
+  "last_order_date": "2018-01-31",
+  "booked_net_sales": 31644664.75,
+  "booked_profit": 3806420.63,
+  "profit_margin_pct": 12.03,
+  "avg_order_value": 503.12,
+  "avg_discount_pct": 10.14,
+  "late_order_pct": 57.31,
+  "on_time_order_pct": 18.64,
+  "early_order_pct": 24.05,
+  "avg_delay_days_when_late": 1.618,
+  "avg_actual_days": 3.502,
+  "avg_promised_days": 2.936,
+  "loss_line_pct": 18.69,
+  "loss_order_pct": 21.13,
+  "loss_lines_total_loss": 3708393.18,
+  "suspected_fraud_order_pct": 2.26,
+  "canceled_order_pct": 2.08
+ },
+ "delivery_by_mode": [
+  {
+   "shipping_mode": "Same Day",
+   "promised_days": 0,
+   "avg_actual_days": 0.484,
+   "late_pct": 48.37,
+   "shipped_orders": 3407
+  },
+  {
+   "shipping_mode": "First Class",
+   "promised_days": 1,
+   "avg_actual_days": 2.0,
+   "late_pct": 100.0,
+   "shipped_orders": 9602
+  },
+  {
+   "shipping_mode": "Second Class",
+   "promised_days": 2,
+   "avg_actual_days": 4.003,
+   "late_pct": 79.99,
+   "shipped_orders": 12256
+  },
+  {
+   "shipping_mode": "Standard Class",
+   "promised_days": 4,
+   "avg_actual_days": 3.995,
+   "late_pct": 39.85,
+   "shipped_orders": 37632
+  }
+ ],
+ "markets": [
+  {
+   "market": "Europe",
+   "orders": 18561,
+   "booked_net_sales": 9348369.23,
+   "margin_pct": 12.11,
+   "late_pct": 57.42,
+   "suspected_fraud_pct": 2.3
+  },
+  {
+   "market": "LATAM",
+   "orders": 17181,
+   "booked_net_sales": 8829847.07,
+   "margin_pct": 12.11,
+   "late_pct": 56.9,
+   "suspected_fraud_pct": 2.32
+  },
+  {
+   "market": "Pacific Asia",
+   "orders": 17577,
+   "booked_net_sales": 7137290.21,
+   "margin_pct": 11.58,
+   "late_pct": 57.68,
+   "suspected_fraud_pct": 2.1
+  },
+  {
+   "market": "USCA",
+   "orders": 8579,
+   "booked_net_sales": 4346978.39,
+   "margin_pct": 12.4,
+   "late_pct": 57.52,
+   "suspected_fraud_pct": 2.44
+  },
+  {
+   "market": "Africa",
+   "orders": 3854,
+   "booked_net_sales": 1982179.85,
+   "margin_pct": 12.11,
+   "late_pct": 56.55,
+   "suspected_fraud_pct": 2.23
+  }
+ ],
+ "departments_by_sales": [
+  {"department_name": "Fan Shop", "sales_share_pct": 46.55, "margin_pct": 11.95, "loss_line_pct": 18.68},
+  {"department_name": "Apparel", "sales_share_pct": 21.67, "margin_pct": 12.33, "loss_line_pct": 18.71},
+  {"department_name": "Golf", "sales_share_pct": 12.52, "margin_pct": 12.02, "loss_line_pct": 18.95},
+  {"department_name": "Footwear", "sales_share_pct": 10.88, "margin_pct": 11.29, "loss_line_pct": 18.67},
+  {"department_name": "Outdoors", "sales_share_pct": 3.41, "margin_pct": 13.1, "loss_line_pct": 17.86},
+  {"department_name": "Technology", "sales_share_pct": 2.82, "margin_pct": 12.49, "loss_line_pct": 17.48}
+ ],
+ "discount_vs_margin": [
+  {"discount_band": "a 0%", "avg_discount_rate_pct": 0.0, "margin_pct": 12.95, "loss_line_pct": 18.57},
+  {"discount_band": "b 1-5%", "avg_discount_rate_pct": 2.5, "margin_pct": 11.71, "loss_line_pct": 18.68},
+  {"discount_band": "c 6-10%", "avg_discount_rate_pct": 6.75, "margin_pct": 12.38, "loss_line_pct": 18.43},
+  {"discount_band": "d 11-15%", "avg_discount_rate_pct": 11.66, "margin_pct": 11.89, "loss_line_pct": 18.81},
+  {"discount_band": "e 16-20%", "avg_discount_rate_pct": 16.5, "margin_pct": 11.87, "loss_line_pct": 18.85},
+  {"discount_band": "f 21-25%", "avg_discount_rate_pct": 22.49, "margin_pct": 11.94, "loss_line_pct": 18.82}
+ ],
+ "top_products": [
+  {
+   "product_name": "Field & Stream Sportsman 16 Gun Fire Safe",
+   "net_sales": 5964765.44,
+   "sales_share_pct": 18.85,
+   "margin_pct": 12.26
+  },
+  {
+   "product_name": "Perfect Fitness Perfect Rip Deck",
+   "net_sales": 3805977.27,
+   "sales_share_pct": 12.03,
+   "margin_pct": 12.45
+  },
+  {
+   "product_name": "Diamondback Women's Serene Classic Comfort Bi",
+   "net_sales": 3546428.27,
+   "sales_share_pct": 11.21,
+   "margin_pct": 11.56
+  },
+  {
+   "product_name": "Nike Men's Free 5.0+ Running Shoe",
+   "net_sales": 3151671.16,
+   "sales_share_pct": 9.96,
+   "margin_pct": 11.42
+  },
+  {
+   "product_name": "Nike Men's Dri-FIT Victory Golf Polo",
+   "net_sales": 2706768.5,
+   "sales_share_pct": 8.55,
+   "margin_pct": 12.35
+  }
+ ],
+ "product_concentration": {"products_sold": 118, "top1_share_pct": 18.85, "top5_share_pct": 60.6, "top10_share_pct": 89.99},
+ "yearly": [
+  {"year": 2015, "orders": 20904, "booked_net_sales": 10620464.81, "margin_pct": 11.87, "late_pct": 57.17},
+  {"year": 2016, "orders": 20859, "booked_net_sales": 10599126.92, "margin_pct": 11.83, "late_pct": 57.61},
+  {"year": 2017, "orders": 21866, "booked_net_sales": 10140401.01, "margin_pct": 12.43, "late_pct": 57.03},
+  {"year": 2018, "orders": 2123, "booked_net_sales": 284672.01, "margin_pct": 11.37, "late_pct": 58.66}
+ ],
+ "assertions_passed": 22,
+ "assertions_total": 22
+}

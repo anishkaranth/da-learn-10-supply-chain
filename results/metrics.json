@@ -1,0 +1,187 @@
+{
+ "project": "da-learn-10-supply-chain",
+ "dataset": "DataCo Smart Supply Chain for Big Data Analysis (Constante, Silva & Pereira, Mendeley Data v5, doi:10.17632/8gx2fvg2k6.5; Kaggle: shashwatwork/dataco-smart-supply-chain-for-big-data-analysis)",
+ "source_mode": "full",
+ "kpis": {
+  "order_lines_total": 180519,
+  "orders_total": 65752,
+  "customers_total": 20652,
+  "products_total": 118,
+  "categories_total": 50,
+  "countries_total": 164,
+  "markets_total": 5,
+  "first_order_date": "2015-01-01",
+  "last_order_date": "2018-01-31",
+  "booked_net_sales": 31644664.75,
+  "booked_profit": 3806420.63,
+  "profit_margin_pct": 12.03,
+  "avg_order_value": 503.12,
+  "avg_discount_pct": 10.14,
+  "late_order_pct": 57.31,
+  "on_time_order_pct": 18.64,
+  "early_order_pct": 24.05,
+  "avg_delay_days_when_late": 1.618,
+  "avg_actual_days": 3.502,
+  "avg_promised_days": 2.936,
+  "loss_line_pct": 18.69,
+  "loss_order_pct": 21.13,
+  "loss_lines_total_loss": 3708393.18,
+  "suspected_fraud_order_pct": 2.26,
+  "canceled_order_pct": 2.08
+ },
+ "analysis_tables": [
+  "tables/a_delivery_by_mode.csv",
+  "tables/a_late_by_mode_market.csv",
+  "tables/a_delay_distribution.csv",
+  "tables/a_market_summary.csv",
+  "tables/a_region_summary.csv",
+  "tables/a_country_top.csv",
+  "tables/a_department_summary.csv",
+  "tables/a_category_summary.csv",
+  "tables/a_top_products.csv",
+  "tables/a_product_concentration.csv",
+  "tables/a_discount_vs_margin.csv",
+  "tables/a_late_vs_profit.csv",
+  "tables/a_payment_status.csv",
+  "tables/a_fraud_by_region.csv",
+  "tables/a_monthly_trend.csv",
+  "tables/a_yearly_summary.csv",
+  "tables/a_segment_summary.csv"
+ ],
+ "data_quality": {
+  "row_counts": [
+   {
+    "entity": "order_lines",
+    "raw_rows": 180519,
+    "distinct_keys": 180519,
+    "clean_rows": 180519,
+    "grain": "order_item_id"
+   },
+   {"entity": "orders", "raw_rows": null, "distinct_keys": 65752, "clean_rows": 65752, "grain": "order_id"},
+   {
+    "entity": "fact_order_item",
+    "raw_rows": null,
+    "distinct_keys": null,
+    "clean_rows": 180519,
+    "grain": "order line"
+   },
+   {"entity": "fact_order", "raw_rows": null, "distinct_keys": null, "clean_rows": 65752, "grain": "order"},
+   {
+    "entity": "dim_customer",
+    "raw_rows": null,
+    "distinct_keys": 20652,
+    "clean_rows": 20652,
+    "grain": "customer_id"
+   },
+   {"entity": "dim_product", "raw_rows": null, "distinct_keys": 118, "clean_rows": 118, "grain": "product_id"},
+   {
+    "entity": "dim_geography",
+    "raw_rows": null,
+    "distinct_keys": null,
+    "clean_rows": 3772,
+    "grain": "market x region x country x state x city"
+   },
+   {
+    "entity": "dim_shipping_mode",
+    "raw_rows": null,
+    "distinct_keys": null,
+    "clean_rows": 4,
+    "grain": "shipping mode"
+   },
+   {
+    "entity": "dim_order_status",
+    "raw_rows": null,
+    "distinct_keys": null,
+    "clean_rows": 9,
+    "grain": "order status"
+   },
+   {
+    "entity": "dim_date",
+    "raw_rows": null,
+    "distinct_keys": null,
+    "clean_rows": 1133,
+    "grain": "calendar day (order or ship)"
+   }
+  ],
+  "null_rates": [
+   {
+    "entity": "stg_dataco",
+    "column_name": "product_description",
+    "raw_missing_pct": 100.0,
+    "clean_null_pct": null,
+    "treatment": "always empty -> column dropped"
+   },
+   {
+    "entity": "stg_dataco",
+    "column_name": "order_zipcode",
+    "raw_missing_pct": 86.24,
+    "clean_null_pct": 86.24,
+    "treatment": "only US destinations carry one; kept as NULL, not used in KPIs"
+   },
+   {
+    "entity": "stg_dataco",
+    "column_name": "customer_zipcode",
+    "raw_missing_pct": 0.002,
+    "clean_null_pct": 0.0,
+    "treatment": "recovered from the shifted customer_state value"
+   },
+   {
+    "entity": "stg_dataco",
+    "column_name": "customer_lname",
+    "raw_missing_pct": 0.004,
+    "clean_null_pct": null,
+    "treatment": "customer names, e-mail, password, street dropped (PII / masked)"
+   }
+  ],
+  "issues": {
+   "order_lines: duplicate order_item_id rows dropped": 0,
+   "customer address shifted one column (state held a zip code) - repaired": 3,
+   "customer_country 'EE. UU.' standardised to United States": 111146,
+   "order_country in Spanish translated to English (data/reference)": 124846,
+   "order_region with double / trailing spaces normalised": 17925,
+   "department_name with trailing space trimmed": 362,
+   "masked / PII columns dropped (email, password = XXXXXXXXX; names, street)": 5,
+   "constant or empty columns dropped (product_status = 0, product_description empty)": 2,
+   "redundant duplicate columns dropped (identity asserted below)": 6,
+   "orders CANCELED or SUSPECTED_FRAUD (excluded from money KPIs, kept)": 2855,
+   "orders with Shipping canceled (excluded from delivery KPIs, kept)": 2855,
+   "order lines with negative profit (kept)": 33784,
+   "order lines with profit outside Q1/Q3 -/+ 3*IQR (flagged, kept)": 7964,
+   "orders from Oct 2017 on (1 line per order, few products: flagged regime change)": 8403,
+   "order lines where profit <> net_sales * rounded profit_ratio (> 0.05, ratio is 2 dp)": 64495
+  },
+  "assertions": {
+   "fact_order_item.order_item_id unique": "PASS",
+   "fact_order_item rows = raw rows (no line lost)": "PASS",
+   "fact_order rows = distinct raw order_id": "PASS",
+   "every order / shipping timestamp parsed": "PASS",
+   "ship_date - order_date = days_real": "PASS",
+   "source Late_delivery_risk = derived late_flag (shipped lines)": "PASS",
+   "redundant columns identical (benefit/profit, sales per customer/total, ids, prices)": "PASS",
+   "order-level attributes identical on every line of an order": "PASS",
+   "customer attributes identical on every line of a customer": "PASS",
+   "product attributes identical on every line of a product": "PASS",
+   "one promised_days per shipping mode": "PASS",
+   "one payment_type per order status": "PASS",
+   "every order country mapped to English": "PASS",
+   "gross_sales = unit_price * quantity": "PASS",
+   "net_sales = gross_sales - discount_amount": "PASS",
+   "quantity 1-5 and discount_rate 0-0.25": "PASS",
+   "line net_sales reconcile to fact_order (abs diff < 1)": "PASS",
+   "fact_order_item.product_id -> dim_product": "PASS",
+   "fact_order.customer_id -> dim_customer": "PASS",
+   "fact_order.geo_key -> dim_geography": "PASS",
+   "fact_order order_date / ship_date -> dim_date": "PASS",
+   "fact_order_item.order_id -> fact_order": "PASS"
+  }
+ },
+ "engine": {"duckdb": "1.5.6", "python": "3.13.5"},
+ "sql_timings_s": {
+  "00_duckdb_compat.sql": 0.001,
+  "01_staging.sql": 0.731,
+  "02_cleaning.sql": 1.027,
+  "03_model.sql": 0.286,
+  "04_analysis.sql": 0.151,
+  "05_quality_checks.sql": 0.137
+ }
+}

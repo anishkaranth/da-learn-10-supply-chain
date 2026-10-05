@@ -1,0 +1,11 @@
+entity,raw_rows,distinct_keys,clean_rows,grain
+dim_customer,,20652,20652,customer_id
+dim_date,,,1133,calendar day (order or ship)
+dim_geography,,,3772,market x region x country x state x city
+dim_order_status,,,9,order status
+dim_product,,118,118,product_id
+dim_shipping_mode,,,4,shipping mode
+fact_order,,,65752,order
+fact_order_item,,,180519,order line
+order_lines,180519,180519,180519,order_item_id
+orders,,65752,65752,order_id

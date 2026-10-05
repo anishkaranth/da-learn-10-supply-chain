@@ -1,0 +1,21 @@
+order_country,market,orders,booked_net_sales,margin_pct,late_pct,rank_by_sales
+Australia,Pacific Asia,3798,1458011.68,11.34,57.17,5
+Brazil,LATAM,2650,1360334.46,12.87,56.47,7
+China,Pacific Asia,2616,1008732.92,11.63,57.56,8
+Cuba,LATAM,1191,605648.34,9.77,54.27,16
+Dominican Republic,LATAM,1242,626641.67,13.23,56.87,15
+El Salvador,LATAM,1238,648780.37,11.42,57.91,13
+France,Europe,4866,2476366.79,12.78,58.41,2
+Germany,Europe,3518,1782875.26,10.54,58.37,4
+Guatemala,LATAM,904,473433.38,9.85,57.39,19
+Honduras,LATAM,1178,636606.81,12.79,55.58,14
+India,Pacific Asia,2152,832461.32,11.4,58.31,10
+Indonesia,Pacific Asia,1920,727660.73,11.53,58.1,12
+Italy,Europe,1880,917907.5,12.69,55.61,9
+Mexico,LATAM,4395,2269427.32,12.74,57.8,3
+Nicaragua,LATAM,1010,515607.07,11.75,59.65,18
+Nigeria,Africa,765,394973.87,13.03,53.32,20
+Spain,Europe,1462,733265.81,12.26,56.68,11
+Turkey,Pacific Asia,1140,576699.9,11.87,58.45,17
+United Kingdom,Europe,2785,1389177.45,12.58,55.58,6
+United States,USCA,8270,4187762.88,12.34,57.7,1

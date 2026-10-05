@@ -1,0 +1,52 @@
+department_name,category_name,booked_lines,net_sales,profit,margin_pct,loss_line_pct,rank_by_sales,rank_by_profit
+Apparel,Baby,198,10490.67,1430.83,13.64,16.16,48,47
+Apparel,Children's Clothing,622,199355.26,26726.61,13.41,18.65,14,14
+Apparel,Cleats,23514,3815653.41,474629.51,12.44,18.67,2,2
+Apparel,Crafts,458,189855.45,25473.88,13.42,19.21,15,15
+Apparel,Men's Clothing,198,37456.46,1829.2,4.88,24.24,38,44
+Apparel,Men's Footwear,21263,2483852.7,296711.09,11.95,18.78,8,8
+Apparel,Women's Clothing,631,122294.83,18729.25,15.31,16.64,17,16
+Book Shop,Books,391,10904.04,854.44,7.84,19.18,47,49
+Discs Shop,CDs,263,2666.59,360.61,13.52,13.69,51,50
+Discs Shop,DVDs,459,67783.61,7168.83,10.58,20.26,29,31
+Discs Shop,Music,417,97764.52,14094.01,14.42,17.99,22,19
+Discs Shop,Video Games,804,28696.04,2521.35,8.79,21.77,43,42
+Fan Shop,Camping & Hiking,13157,3546428.27,409895.62,11.56,18.89,3,3
+Fan Shop,Fishing,16595,5964765.44,731576.19,12.26,18.36,1,1
+Fan Shop,Hunting & Shooting,424,48892.73,5882.78,12.03,19.1,32,34
+Fan Shop,Indoor/Outdoor Games,18470,2485575.58,302403.77,12.17,18.79,7,7
+Fan Shop,Toys,507,5255.65,861.26,16.39,15.58,50,48
+Fan Shop,Water Sports,14880,2679256.78,308981.34,11.53,18.81,6,6
+Fitness,Baseball & Softball,607,81168.29,12239.2,15.08,16.64,27,22
+Fitness,Basketball,64,23869.86,1909.97,8.0,15.63,44,43
+Fitness,Hockey,588,41551.29,5968.42,14.36,18.03,34,33
+Fitness,Lacrosse,329,34187.67,4095.84,11.98,17.93,40,38
+Fitness,Soccer,136,23722.02,3846.01,16.21,17.65,45,39
+Fitness,Sporting Goods,336,99131.33,11240.76,11.34,16.96,20,24
+Fitness,Tennis & Racquet,314,38585.96,5969.96,15.47,19.11,36,32
+Footwear,As Seen on  TV!,66,17917.67,1448.52,8.08,19.7,46,46
+Footwear,Boxing & MMA,402,73024.9,7928.38,10.86,19.4,28,28
+Footwear,Cardio Equipment,11948,3174909.16,362984.7,11.43,18.72,4,4
+Footwear,Electronics,1070,98939.75,11086.44,11.21,18.88,21,25
+Footwear,Fitness Accessories,296,30738.76,5287.46,17.2,15.2,41,36
+Footwear,Strength Training,109,48456.63,243.77,0.5,16.51,33,51
+Golf,Girls' Apparel,1137,128459.61,16916.26,13.17,18.82,16,17
+Golf,Shop By Sport,10515,1126786.16,125077.03,11.1,19.6,9,9
+Golf,Women's Apparel,20116,2706768.5,334335.53,12.35,18.62,5,5
+Health and Beauty,Health and Beauty,346,91249.68,9281.12,10.17,23.41,25,27
+Outdoors,Accessories,1697,114706.96,15752.16,13.73,17.91,18,18
+Outdoors,Electronics,1954,221607.34,27423.62,12.37,17.71,13,13
+Outdoors,Garden,466,223105.71,32750.27,14.68,16.95,12,11
+Outdoors,Golf Apparel,429,30463.9,3399.42,11.16,19.35,42,41
+Outdoors,Golf Bags & Carts,61,9403.79,1810.07,19.25,9.84,49,45
+Outdoors,Golf Balls,1403,65824.77,7572.68,11.5,17.89,30,29
+Outdoors,Golf Gloves,1029,100404.54,13653.67,13.6,16.42,19,20
+Outdoors,Golf Shoes,502,92640.28,11603.53,12.53,21.71,24,23
+Outdoors,Kids' Golf Clubs,356,82576.3,9355.59,11.33,19.66,26,26
+Outdoors,Men's Golf Clubs,274,41386.33,5279.61,12.76,15.33,35,37
+Outdoors,Trade-In,926,58891.65,7363.83,12.5,18.14,31,30
+Outdoors,Women's Golf Clubs,170,37716.72,5372.24,14.24,16.47,37,35
+Pet Shop,Pet Supplies,472,35834.98,3505.18,9.78,20.55,39,40
+Technology,Cameras,562,228131.12,29604.43,12.98,18.33,11,12
+Technology,Computers,425,572527.5,69232.11,12.09,16.0,10,10
+Technology,Consumer Electronics,409,93027.91,12752.29,13.71,17.85,23,21
